@@ -10,6 +10,16 @@ const inspirationalQuotes = [
     "You are never too old to set another goal or to dream a new dream. – C.S. Lewis",
     "The best time to plant a tree was 20 years ago. The second best time is now. – Chinese Proverb",
     "Your time is limited, don't waste it living someone else's life. – Steve Jobs",
+    "Take a 5-minute break and stretch your body!",
+    "Drink a glass of water to stay hydrated.",
+    "Stand up and do 10 squats right now!",
+     "Take a deep breath and relax for a moment.",
+    "Look away from the screen and focus on something distant for 20 seconds.",
+    "Walk around for a few minutes to refresh your mind.",
+    "Do a quick mindfulness exercise: Close your eyes and take 5 deep breaths.",
+    "Check your posture and sit up straight!",
+    "Take a moment to appreciate something you're grateful for.",
+    "Stand up and touch your toes 5 times.",
     "Act as if what you do makes a difference. It does. – William James",
     "The only limit to our realization of tomorrow is our doubts of today. – Franklin D. Roosevelt",
     "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
@@ -56,13 +66,13 @@ const inspirationalQuotes = [
   }
   
   // Function to create an activity reminder widget
-  function createActivityWidget(activity) {
+  function createActivityWidget(quote) {
     const widget = document.createElement("div");
     widget.className = "adfriend-widget";
     widget.innerHTML = `
       <div class="activity-container">
         <i class="fas fa-running"></i>
-        <p class="activity-text">${activity}</p>
+        <p class="activity-text">${quote}</p>
       </div>
     `;
     return widget;
@@ -70,15 +80,13 @@ const inspirationalQuotes = [
   
   // Function to replace ads with widgets
   function replaceAds() {
-    chrome.storage.sync.get(["quote", "activity"], (data) => {
-      // Use a custom quote if set, otherwise pick a random inspirational quote
-      const quote = data.quote || inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
-      const activity = data.activity || "Have you done your burpees today?";
-      const adElements = detectAdElements();
-      adElements.forEach((ad, index) => {
-        const widget = index % 2 === 0 ? createQuoteWidget(quote) : createActivityWidget(activity);
-        ad.replaceWith(widget);
-      });
+    const adElements = detectAdElements();
+    adElements.forEach((ad, index) => {
+      // Pick a random quote from the inspirationalQuotes array
+      const randomQuote = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
+      // Alternate between motivational quote and activity reminder widgets
+      const widget = index % 2 === 0 ? createQuoteWidget(randomQuote) : createActivityWidget(randomQuote);
+      ad.replaceWith(widget);
     });
   }
   
