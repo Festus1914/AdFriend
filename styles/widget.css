@@ -1,0 +1,45 @@
+/* styles/widget.css */
+
+.adfriend-widget {
+  padding: 20px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.quote-container, .activity-container {
+  max-width: 300px;
+}
+
+.quote-text, .activity-text {
+  font-size: 18px;
+  font-style: italic;
+  margin: 0;
+}
+
+.quote-author {
+  font-size: 14px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.fas {
+  font-size: 24px;
+  margin: 0 5px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
